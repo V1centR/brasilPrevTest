@@ -1,2 +1,6 @@
 br/com/bpcommerce/BrasilPrevCommerceApplication.java
  br.com.bpcommerce.BrasilPrevCommerceApplication
+br/com/bpcommerce/model/User.java
+ br.com.bpcommerce.model.User
+br/com/bpcommerce/controller/UserController.java
+ br.com.bpcommerce.controller.UserController
