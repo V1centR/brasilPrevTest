@@ -13,12 +13,12 @@ import br.com.bpcommerce.model.User;
 
 @RestController
 @RequestMapping("/ecommerce")
-public class UserController {
+public class ProductController {
 
-	static final String PATH = "user";
+	static final String PATH = "product";
 	
 	@GetMapping(value = "/"+PATH+"/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String allUsers() {
+	private String allProd() {
 		
 		User allUser = new User();
 		
@@ -27,7 +27,16 @@ public class UserController {
 	}
 	
 	@GetMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String getUser(@PathVariable(name = "id") String id) {
+	private String getProd(@PathVariable(name = "id") String id) {
+		
+		User allUser = new User();
+		
+		
+		return allUser.toString();		
+	}
+	
+	@PostMapping(value = "/"+PATH+"/register", produces = MediaType.APPLICATION_JSON_VALUE)
+	private String registerProd(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		
@@ -36,16 +45,7 @@ public class UserController {
 	}
 	
 	@PutMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String updatetUser(@PathVariable(name = "id") String id) {
-		
-		User allUser = new User();
-		
-		
-		return allUser.toString();		
-	}
-	
-	@PostMapping(value = "/"+PATH+"/register/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String registerUser(String id) {
+	private String updatetProd(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		
@@ -54,15 +54,7 @@ public class UserController {
 	}
 	
 	@DeleteMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String deleteUser(@PathVariable(name = "id") String id) {
-		
-		User allUser = new User();
-		
-		return allUser.toString();		
-	}
-	
-	@PostMapping(value = "/"+PATH+"/login/{jwt}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String loginUser(@PathVariable(name = "jwt") String id) {
+	private String deleteProd(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		

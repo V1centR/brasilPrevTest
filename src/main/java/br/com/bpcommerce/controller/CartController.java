@@ -13,21 +13,21 @@ import br.com.bpcommerce.model.User;
 
 @RestController
 @RequestMapping("/ecommerce")
-public class UserController {
+public class CartController {
 
-	static final String PATH = "user";
+	static final String PATH = "cart";
 	
-	@GetMapping(value = "/"+PATH+"/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String allUsers() {
-		
-		User allUser = new User();
-		
-		
-		return allUser.toString();		
-	}
+//	@GetMapping(value = "/"+PATH+"/all", produces = MediaType.APPLICATION_JSON_VALUE)
+//	private String allOrders() {
+//		
+//		User allUser = new User();
+//		
+//		
+//		return allUser.toString();		
+//	}
 	
 	@GetMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String getUser(@PathVariable(name = "id") String id) {
+	private String getCart(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		
@@ -36,7 +36,7 @@ public class UserController {
 	}
 	
 	@PutMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String updatetUser(@PathVariable(name = "id") String id) {
+	private String updatetCart(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		
@@ -44,25 +44,16 @@ public class UserController {
 		return allUser.toString();		
 	}
 	
-	@PostMapping(value = "/"+PATH+"/register/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String registerUser(String id) {
+	@PostMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	private String chckoutCart(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
-		
 		
 		return allUser.toString();		
 	}
 	
 	@DeleteMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String deleteUser(@PathVariable(name = "id") String id) {
-		
-		User allUser = new User();
-		
-		return allUser.toString();		
-	}
-	
-	@PostMapping(value = "/"+PATH+"/login/{jwt}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String loginUser(@PathVariable(name = "jwt") String id) {
+	private String deleteOrder(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		
