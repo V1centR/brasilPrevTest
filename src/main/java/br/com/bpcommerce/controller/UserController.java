@@ -1,6 +1,7 @@
 package br.com.bpcommerce.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,9 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String getUser(@PathVariable(name = "id") String id) {
+	private Customer getUser(@PathVariable(name = "id") Integer id) {
 
-		User allUser = new User();
-
-		return allUser.toString();
+		return customRepo.findById(id);
 	}
 
 	@PutMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

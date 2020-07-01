@@ -1,2 +1,0 @@
-br/com/bpcommerce/BrasilPrevCommerceApplicationTests.java
- br.com.bpcommerce.BrasilPrevCommerceApplicationTests
