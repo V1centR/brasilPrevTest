@@ -24,97 +24,81 @@ import br.com.bpcommerce.utils.RegexValidation;
 public class UserController {
 
 	static final String PATH = "user";
-	
+
 	@Autowired
 	private CustomerRepo customRepo;
-	
-	
-	@GetMapping(value = "/"+PATH+"/all", produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@GetMapping(value = "/" + PATH + "/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	private String allUsers() {
-		
+
 		User allUser = new User();
-		
-		
-		return allUser.toString();		
+
+		return allUser.toString();
 	}
-	
-	@GetMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@GetMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private String getUser(@PathVariable(name = "id") String id) {
-		
+
 		User allUser = new User();
-		
-		
-		return allUser.toString();		
+
+		return allUser.toString();
 	}
-	
-	@PutMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@PutMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private String updatetUser(@PathVariable(name = "id") String id) {
-		
+
 		User allUser = new User();
-		
-		
-		return allUser.toString();		
+
+		return allUser.toString();
 	}
-	
-	@PostMapping(value = "/"+PATH+"/register", produces = MediaType.APPLICATION_JSON_VALUE)
+
+	/*
+	 * Register customer
+	 * 
+	 */
+	@PostMapping(value = "/" + PATH + "/register", produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<String> registerUser(@RequestBody Customer userData) {
-		
+
 		JSONObject jsonObj = new JSONObject(userData);
-		
-		System.out.println("DATA RECEIVED::: " + jsonObj.toString());
-		
-		
 		RegexValidation testString = new RegexValidation();
-		testString.strValid(jsonObj);
-		System.out.println("AAAA" + userData.getFirstname());
-		customRepo.save(userData);
-		
-		
-		
-		
-		if(testString.strValid(jsonObj)) {
-			
+
+		if (testString.strValid(jsonObj)) {
+
 			try {
-				
-				//customRepo.save(userData);
+				customRepo.save(userData);
 				return new ResponseEntity<>(null, HttpStatus.CREATED);
-				
+
 			} catch (Exception e) {
 
-				
 				JSONObject jsonObjErr = new JSONObject();
-				
 				jsonObjErr.put("ERROR", "Your request cannot be completed at this time");
-				
 				return new ResponseEntity<>(jsonObjErr.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
-				
+
 			}
-			
-			
+
 		} else {
-			
+
 			JSONObject jsonObjErr = new JSONObject();
-			
-			jsonObjErr.put("PAYLOAD", "ERROR :: Check if the information is typed correctly or is empty");
-			
+			jsonObjErr.put("REGISTER", "ERROR :: Check if the information is typed correctly or is empty");
+
 			return new ResponseEntity<>(jsonObjErr.toString(), HttpStatus.BAD_REQUEST);
-		}		
+		}
 	}
-	
-	@DeleteMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@DeleteMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private String deleteUser(@PathVariable(name = "id") String id) {
-		
+
 		User allUser = new User();
-		
-		return allUser.toString();		
+
+		return allUser.toString();
 	}
-	
-	@PostMapping(value = "/"+PATH+"/login/{jwt}", produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@PostMapping(value = "/" + PATH + "/login/{jwt}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private String loginUser(@PathVariable(name = "jwt") String id) {
-		
+
 		User allUser = new User();
-		
-		return allUser.toString();		
+
+		return allUser.toString();
 	}
-	
+
 }

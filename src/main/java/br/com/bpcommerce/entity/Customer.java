@@ -31,9 +31,6 @@ public class Customer implements Serializable {
 
 	private String country;
 
-	//@Temporal(TemporalType.TIMESTAMP)
-	private Date createdate;
-
 	private String email;
 
 	private String firstname;
@@ -99,15 +96,6 @@ public class Customer implements Serializable {
 
 	public void setCountry(String country) {
 		this.country = country;
-	}
-
-	public Date getCreatedate() {
-		return this.createdate;
-	}
-
-	public void setCreatedate(Date createdate) {		
-		
-		this.createdate = createdate;
 	}
 
 	public String getEmail() {
