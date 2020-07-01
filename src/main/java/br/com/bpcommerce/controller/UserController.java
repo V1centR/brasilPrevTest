@@ -47,6 +47,7 @@ public class UserController {
 	private String updatetUser(@PathVariable(name = "id") String id) {
 
 		User allUser = new User();
+		
 
 		return allUser.toString();
 	}
