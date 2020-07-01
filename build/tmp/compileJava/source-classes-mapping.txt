@@ -1,6 +1,38 @@
+br/com/bpcommerce/controller/ProductController.java
+ br.com.bpcommerce.controller.ProductController
+br/com/bpcommerce/entity/Category.java
+ br.com.bpcommerce.entity.Category
+br/com/bpcommerce/controller/CartController.java
+ br.com.bpcommerce.controller.CartController
+br/com/bpcommerce/entity/Orderitem.java
+ br.com.bpcommerce.entity.Orderitem
+br/com/bpcommerce/entity/Order.java
+ br.com.bpcommerce.entity.Order
+br/com/bpcommerce/controller/OrderController.java
+ br.com.bpcommerce.controller.OrderController
+br/com/bpcommerce/repo/ProductRepo.java
+ br.com.bpcommerce.repo.ProductRepo
 br/com/bpcommerce/BrasilPrevCommerceApplication.java
  br.com.bpcommerce.BrasilPrevCommerceApplication
+br/com/bpcommerce/entity/Product.java
+ br.com.bpcommerce.entity.Product
 br/com/bpcommerce/model/User.java
  br.com.bpcommerce.model.User
+br/com/bpcommerce/controller/CategoryController.java
+ br.com.bpcommerce.controller.CategoryController
+br/com/bpcommerce/repo/CustomerRepo.java
+ br.com.bpcommerce.repo.CustomerRepo
+br/com/bpcommerce/entity/Brand.java
+ br.com.bpcommerce.entity.Brand
+br/com/bpcommerce/repo/CartMongoRepo.java
+ br.com.bpcommerce.repo.CartMongoRepo
 br/com/bpcommerce/controller/UserController.java
  br.com.bpcommerce.controller.UserController
+br/com/bpcommerce/entity/Customer.java
+ br.com.bpcommerce.entity.Customer
+br/com/bpcommerce/controller/BrandController.java
+ br.com.bpcommerce.controller.BrandController
+br/com/bpcommerce/entity/Cart.java
+ br.com.bpcommerce.entity.Cart
+br/com/bpcommerce/utils/RegexValidation.java
+ br.com.bpcommerce.utils.RegexValidation

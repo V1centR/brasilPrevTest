@@ -1,6 +1,8 @@
 package br.com.bpcommerce.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -29,7 +31,7 @@ public class Customer implements Serializable {
 
 	private String country;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	//@Temporal(TemporalType.TIMESTAMP)
 	private Date createdate;
 
 	private String email;
@@ -103,7 +105,8 @@ public class Customer implements Serializable {
 		return this.createdate;
 	}
 
-	public void setCreatedate(Date createdate) {
+	public void setCreatedate(Date createdate) {		
+		
 		this.createdate = createdate;
 	}
 

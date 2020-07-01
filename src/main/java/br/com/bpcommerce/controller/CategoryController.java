@@ -15,19 +15,19 @@ import br.com.bpcommerce.model.User;
 @RequestMapping("/ecommerce")
 public class CategoryController {
 
-	static final String PATH = "cart";
+	static final String PATH = "category";
 	
-//	@GetMapping(value = "/"+PATH+"/all", produces = MediaType.APPLICATION_JSON_VALUE)
-//	private String allOrders() {
-//		
-//		User allUser = new User();
-//		
-//		
-//		return allUser.toString();		
-//	}
+	@GetMapping(value = "/"+PATH+"/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	private String allCategory() {
+		
+		User allUser = new User();
+		
+		
+		return allUser.toString();		
+	}
 	
 	@GetMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String getCart(@PathVariable(name = "id") String id) {
+	private String getCategory(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		
@@ -36,7 +36,7 @@ public class CategoryController {
 	}
 	
 	@PutMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String updatetCart(@PathVariable(name = "id") String id) {
+	private String updatetCategory(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		
@@ -45,7 +45,7 @@ public class CategoryController {
 	}
 	
 	@PostMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String chckoutCart(@PathVariable(name = "id") String id) {
+	private String registerCategory(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		
@@ -53,7 +53,7 @@ public class CategoryController {
 	}
 	
 	@DeleteMapping(value = "/"+PATH+"/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String deleteOrder(@PathVariable(name = "id") String id) {
+	private String deleteCategory(@PathVariable(name = "id") String id) {
 		
 		User allUser = new User();
 		

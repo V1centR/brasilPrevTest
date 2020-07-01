@@ -21,7 +21,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework:spring-web:5.2.6.RELEASE'	
-	implementation 'mysql:mysql-connector-java:8.0.20'	
+	implementation 'mysql:mysql-connector-java:8.0.20'
+	implementation 'org.json:json:20200518'
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
