@@ -1,5 +1,7 @@
 package br.com.bpcommerce.controller;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,11 +31,8 @@ public class UserController {
 	private CustomerRepo customRepo;
 
 	@GetMapping(value = "/" + PATH + "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String allUsers() {
-
-		User allUser = new User();
-
-		return allUser.toString();
+	private List<Customer> allUsers() {
+		return customRepo.findAll();
 	}
 
 	@GetMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
