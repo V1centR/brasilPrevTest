@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bpcommerce.entity.Category;
-import br.com.bpcommerce.entity.Customer;
 import br.com.bpcommerce.model.User;
 import br.com.bpcommerce.repo.CategoryRepo;
 import br.com.bpcommerce.utils.RegexValidation;
@@ -32,20 +31,19 @@ public class CategoryController {
 	private CategoryRepo categoryRepo;
 
 	/*
-	 * List all customers
-	 * 
+	 * List all Categories
 	 */
 	@GetMapping(value = "/" + PATH + "/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	private List<Category> allUsers() {
 		return categoryRepo.findAll();
 	}
 
+	/*
+	 * Get categories by id
+	 */
 	@GetMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String getCategory(@PathVariable(name = "id") String id) {
-
-		User allUser = new User();
-
-		return allUser.toString();
+	private Category getUser(@PathVariable(name = "id") Integer id) {
+		return categoryRepo.findById(id);
 	}
 
 	@PutMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
