@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bpcommerce.entity.Customer;
-import br.com.bpcommerce.model.User;
 import br.com.bpcommerce.repo.CustomerRepo;
 import br.com.bpcommerce.utils.RegexValidation;
 
@@ -56,7 +55,7 @@ public class UserController {
 	@PutMapping(value = "/" + PATH + "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private Customer updatetUser(@PathVariable(name = "id") Integer id, @RequestBody Customer userData) {
 
-		userData.setId(id);		
+		userData.setId(id);
 		return customRepo.save(userData);
 	}
 
@@ -93,18 +92,22 @@ public class UserController {
 		}
 	}
 
+	/*
+	 * Delete customer
+	 * 
+	 */
 	@DeleteMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private void deleteUser(@PathVariable(name = "id") Integer id) {
-		
+
 		customRepo.delete(customRepo.findById(id));
 	}
 
-	@PostMapping(value = "/" + PATH + "/login/{jwt}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String loginUser(@PathVariable(name = "jwt") String id) {
-
-		User allUser = new User();
-
-		return allUser.toString();
-	}
+//	@PostMapping(value = "/" + PATH + "/login/{jwt}", produces = MediaType.APPLICATION_JSON_VALUE)
+//	private String loginUser(@PathVariable(name = "jwt") String id) {
+//
+//		User allUser = new User();
+//
+//		return allUser.toString();
+//	}
 
 }
