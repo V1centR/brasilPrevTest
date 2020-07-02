@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bpcommerce.entity.Category;
-import br.com.bpcommerce.entity.Customer;
 import br.com.bpcommerce.model.User;
 import br.com.bpcommerce.repo.CategoryRepo;
 import br.com.bpcommerce.utils.RegexValidation;
@@ -50,6 +49,7 @@ public class CategoryController {
 	/*
 	 * Update category
 	 */
+	//TODO apply regex validation here
 	@PutMapping(value = "/" + PATH + "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private Category updatetCategory(@PathVariable(name = "id") Integer id, @RequestBody Category ctgData) {
 
@@ -57,12 +57,13 @@ public class CategoryController {
 		return categoryRepo.save(ctgData);
 	}
 
+	/*
+	 * Register category
+	 */
 	@PostMapping(value = "/" + PATH + "/register", produces = MediaType.APPLICATION_JSON_VALUE)
 	private ResponseEntity<String> registerCategory(@RequestBody Category ctgData) {
 
 		JSONObject jsonObj = new JSONObject(ctgData);
-
-		System.out.println("DATA RECEIVED:::: " + jsonObj);
 
 		RegexValidation testString = new RegexValidation();
 
@@ -90,12 +91,12 @@ public class CategoryController {
 		}
 	}
 
+	/*
+	 * Delete category
+	 */
 	@DeleteMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String deleteCategory(@PathVariable(name = "id") String id) {
-
-		User allUser = new User();
-
-		return allUser.toString();
+	private void deleteCategory(@PathVariable(name = "id") Integer id) {
+		categoryRepo.delete(categoryRepo.findById(id));
 	}
 
 }
