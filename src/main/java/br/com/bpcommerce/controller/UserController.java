@@ -1,7 +1,6 @@
 package br.com.bpcommerce.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,24 +30,34 @@ public class UserController {
 	@Autowired
 	private CustomerRepo customRepo;
 
+	/*
+	 * List all customers
+	 * 
+	 */
 	@GetMapping(value = "/" + PATH + "/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	private List<Customer> allUsers() {
 		return customRepo.findAll();
 	}
 
+	/*
+	 * Get customer by id
+	 * 
+	 */
 	@GetMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private Customer getUser(@PathVariable(name = "id") Integer id) {
 
 		return customRepo.findById(id);
 	}
 
-	@PutMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String updatetUser(@PathVariable(name = "id") String id) {
+	/*
+	 * Update customer data
+	 * 
+	 */
+	@PutMapping(value = "/" + PATH + "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	private Customer updatetUser(@PathVariable(name = "id") Integer id, @RequestBody Customer userData) {
 
-		User allUser = new User();
-		
-
-		return allUser.toString();
+		userData.setId(id);		
+		return customRepo.save(userData);
 	}
 
 	/*
