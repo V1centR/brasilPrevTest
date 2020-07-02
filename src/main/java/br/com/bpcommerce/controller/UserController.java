@@ -94,11 +94,9 @@ public class UserController {
 	}
 
 	@DeleteMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String deleteUser(@PathVariable(name = "id") String id) {
-
-		User allUser = new User();
-
-		return allUser.toString();
+	private void deleteUser(@PathVariable(name = "id") Integer id) {
+		
+		customRepo.delete(customRepo.findById(id));
 	}
 
 	@PostMapping(value = "/" + PATH + "/login/{jwt}", produces = MediaType.APPLICATION_JSON_VALUE)

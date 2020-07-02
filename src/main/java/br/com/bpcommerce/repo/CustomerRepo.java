@@ -20,8 +20,6 @@ public interface CustomerRepo extends CrudRepository<Customer, String> {
 
 	Customer save(Customer userData);
 	
-//	Customer save(Customer data) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	void delete(Customer userData);
+	
 }
