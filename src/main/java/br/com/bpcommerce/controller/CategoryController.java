@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bpcommerce.entity.Category;
+import br.com.bpcommerce.entity.Customer;
 import br.com.bpcommerce.model.User;
 import br.com.bpcommerce.repo.CategoryRepo;
 import br.com.bpcommerce.utils.RegexValidation;
@@ -34,7 +35,7 @@ public class CategoryController {
 	 * List all Categories
 	 */
 	@GetMapping(value = "/" + PATH + "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	private List<Category> allUsers() {
+	private List<Category> allCategories() {
 		return categoryRepo.findAll();
 	}
 
@@ -42,16 +43,18 @@ public class CategoryController {
 	 * Get categories by id
 	 */
 	@GetMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private Category getUser(@PathVariable(name = "id") Integer id) {
+	private Category getCategory(@PathVariable(name = "id") Integer id) {
 		return categoryRepo.findById(id);
 	}
 
-	@PutMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String updatetCategory(@PathVariable(name = "id") String id) {
+	/*
+	 * Update category
+	 */
+	@PutMapping(value = "/" + PATH + "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	private Category updatetCategory(@PathVariable(name = "id") Integer id, @RequestBody Category ctgData) {
 
-		User allUser = new User();
-
-		return allUser.toString();
+		ctgData.setId(id);
+		return categoryRepo.save(ctgData);
 	}
 
 	@PostMapping(value = "/" + PATH + "/register", produces = MediaType.APPLICATION_JSON_VALUE)
