@@ -10,11 +10,6 @@ public class RegexValidation {
 
 	public boolean strValid(JSONObject data) {
 
-//		String emailPattern = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
-//		String regex = "^[a-zA-Z ]{1,15}$";
-//
-//		Pattern pattern = Pattern.compile(regex);
-//		Pattern emailRegex = Pattern.compile(emailPattern);
 		try {
 
 			String email = data.getString("email");

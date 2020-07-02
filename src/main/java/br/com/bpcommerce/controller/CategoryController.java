@@ -1,5 +1,7 @@
 package br.com.bpcommerce.controller;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bpcommerce.entity.Category;
+import br.com.bpcommerce.entity.Customer;
 import br.com.bpcommerce.model.User;
 import br.com.bpcommerce.repo.CategoryRepo;
 import br.com.bpcommerce.utils.RegexValidation;
@@ -28,12 +31,13 @@ public class CategoryController {
 	@Autowired
 	private CategoryRepo categoryRepo;
 
+	/*
+	 * List all customers
+	 * 
+	 */
 	@GetMapping(value = "/" + PATH + "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String allCategory() {
-
-		User allUser = new User();
-
-		return allUser.toString();
+	private List<Category> allUsers() {
+		return categoryRepo.findAll();
 	}
 
 	@GetMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -70,7 +74,6 @@ public class CategoryController {
 
 			} catch (Exception e) {
 
-				System.out.println("EXCEPTION :::::::::: " + e);
 				JSONObject jsonObjErr = new JSONObject();
 				jsonObjErr.put("ERROR", "Your request cannot be completed at this time");
 				return new ResponseEntity<>(jsonObjErr.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
