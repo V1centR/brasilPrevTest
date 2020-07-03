@@ -46,12 +46,12 @@ public class Product implements Serializable {
 	// bi-directional many-to-one association to Category
 	@ManyToOne
 	@JoinColumn(name = "category")
-	private Category categoryBean;
+	private Category category;
 
 	// bi-directional many-to-one association to Brand
 	@ManyToOne
 	@JoinColumn(name = "brand")
-	private Brand brandBean;
+	private Brand brand;
 
 	public Product() {
 	}
@@ -142,20 +142,20 @@ public class Product implements Serializable {
 		return orderitem;
 	}
 
-	public Category getCategoryBean() {
-		return this.categoryBean;
+	public Category getCategory() {
+		return this.category;
 	}
 
-	public void setCategoryBean(Category categoryBean) {
-		this.categoryBean = categoryBean;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
-	public Brand getBrandBean() {
-		return this.brandBean;
+	public Brand getBrand() {
+		return this.brand;
 	}
 
-	public void setBrandBean(Brand brandBean) {
-		this.brandBean = brandBean;
+	public void setBrand(Brand brand) {
+		this.brand = brand;
 	}
 
 }
