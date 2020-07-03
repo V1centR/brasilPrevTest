@@ -70,9 +70,9 @@ public class ProductController {
 		if (testString.productNameFilter(jsonObj)) {
 
 			try {
-				
+
 				prodRepo.save(prodData);
-				
+
 				return new ResponseEntity<>(null, HttpStatus.CREATED);
 
 			} catch (Exception e) {
