@@ -22,9 +22,9 @@ import br.com.bpcommerce.utils.RegexValidation;
 
 @RestController
 @RequestMapping("/ecommerce")
-public class UserController {
+public class CustomerController {
 
-	static final String PATH = "user";
+	static final String PATH = "customer";
 
 	@Autowired
 	private CustomerRepo customRepo;
@@ -34,7 +34,7 @@ public class UserController {
 	 * 
 	 */
 	@GetMapping(value = "/" + PATH + "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	private List<Customer> allUsers() {
+	private List<Customer> allCustomer() {
 		return customRepo.findAll();
 	}
 
@@ -43,7 +43,7 @@ public class UserController {
 	 * 
 	 */
 	@GetMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private Customer getUser(@PathVariable(name = "id") Integer id) {
+	private Customer getCustomer(@PathVariable(name = "id") Integer id) {
 
 		return customRepo.findById(id);
 	}
@@ -53,10 +53,10 @@ public class UserController {
 	 * 
 	 */
 	@PutMapping(value = "/" + PATH + "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private Customer updatetUser(@PathVariable(name = "id") Integer id, @RequestBody Customer userData) {
+	private Customer updatetCustomer(@PathVariable(name = "id") Integer id, @RequestBody Customer customerData) {
 
-		userData.setId(id);
-		return customRepo.save(userData);
+		customerData.setId(id);
+		return customRepo.save(customerData);
 	}
 
 	/*
@@ -64,15 +64,15 @@ public class UserController {
 	 * 
 	 */
 	@PostMapping(value = "/" + PATH + "/register", produces = MediaType.APPLICATION_JSON_VALUE)
-	private ResponseEntity<String> registerUser(@RequestBody Customer userData) {
+	private ResponseEntity<String> registerCustomer(@RequestBody Customer customerData) {
 
-		JSONObject jsonObj = new JSONObject(userData);
+		JSONObject jsonObj = new JSONObject(customerData);
 		RegexValidation testString = new RegexValidation();
 
 		if (testString.strValid(jsonObj)) {
 
 			try {
-				customRepo.save(userData);
+				customRepo.save(customerData);
 				return new ResponseEntity<>(null, HttpStatus.CREATED);
 
 			} catch (Exception e) {
@@ -97,17 +97,8 @@ public class UserController {
 	 * 
 	 */
 	@DeleteMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private void deleteUser(@PathVariable(name = "id") Integer id) {
+	private void deleteCustomer(@PathVariable(name = "id") Integer id) {
 
 		customRepo.delete(customRepo.findById(id));
 	}
-
-//	@PostMapping(value = "/" + PATH + "/login/{jwt}", produces = MediaType.APPLICATION_JSON_VALUE)
-//	private String loginUser(@PathVariable(name = "jwt") String id) {
-//
-//		User allUser = new User();
-//
-//		return allUser.toString();
-//	}
-
 }
