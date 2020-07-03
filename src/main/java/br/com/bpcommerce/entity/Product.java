@@ -2,6 +2,10 @@ package br.com.bpcommerce.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -39,11 +43,13 @@ public class Product implements Serializable {
 
 	//bi-directional many-to-one association to Category
 	@ManyToOne
+	@JsonProperty(value = "category")
 	@JoinColumn(name="category")
 	private Category categoryBean;
 
 	//bi-directional many-to-one association to Brand
 	@ManyToOne
+	@JsonProperty(value = "brand")
 	@JoinColumn(name="brand")
 	private Brand brandBean;
 

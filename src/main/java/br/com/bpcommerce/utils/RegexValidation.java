@@ -41,6 +41,10 @@ public class RegexValidation {
 	public boolean categoryNameFilter(JSONObject data) {
 		return defValidation(data.getString("name"), "categoryName");
 	}
+	
+	public boolean productNameFilter(JSONObject data) {
+		return defValidation(data.getString("name"), "product");
+	}
 
 	private boolean defValidation(String str, String type) {
 
@@ -57,6 +61,9 @@ public class RegexValidation {
 				break;
 			case "categoryName":
 				pattern = "^[a-zA-Z ]{1,25}$";
+				break;
+			case "product":
+				pattern = "^[a-zA-Z0-9 ]{1,99}$";
 				break;
 			case "phone":
 				pattern = "^[0-9 ]{1,15}$";

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bpcommerce.entity.Category;
-import br.com.bpcommerce.model.User;
 import br.com.bpcommerce.repo.CategoryRepo;
 import br.com.bpcommerce.utils.RegexValidation;
 
@@ -49,7 +48,7 @@ public class CategoryController {
 	/*
 	 * Update category
 	 */
-	//TODO apply regex validation here
+	// TODO apply regex validation here
 	@PutMapping(value = "/" + PATH + "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private Category updatetCategory(@PathVariable(name = "id") Integer id, @RequestBody Category ctgData) {
 
