@@ -38,6 +38,10 @@ public class RegexValidation {
 
 	}
 
+	public boolean nameFilter(JSONObject data) {
+		return defValidation(data.getString("name"), "name");
+	}
+	
 	public boolean categoryNameFilter(JSONObject data) {
 		return defValidation(data.getString("name"), "categoryName");
 	}
