@@ -1,17 +1,19 @@
 package br.com.bpcommerce.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the brands database table.
  * 
  */
 @Entity
-@Table(name="brands")
-@NamedQuery(name="Brand.findAll", query="SELECT b FROM Brand b")
+@Table(name = "brands")
+@NamedQuery(name = "Brand.findAll", query = "SELECT b FROM Brand b")
 public class Brand implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,10 +21,6 @@ public class Brand implements Serializable {
 	private int id;
 
 	private String name;
-
-	//bi-directional many-to-one association to Product
-	@OneToMany(mappedBy="brandBean")
-	private List<Product> products;
 
 	public Brand() {
 	}
@@ -41,28 +39,6 @@ public class Brand implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<Product> getProducts() {
-		return this.products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-	public Product addProduct(Product product) {
-		getProducts().add(product);
-		product.setBrandBean(this);
-
-		return product;
-	}
-
-	public Product removeProduct(Product product) {
-		getProducts().remove(product);
-		product.setBrandBean(null);
-
-		return product;
 	}
 
 }

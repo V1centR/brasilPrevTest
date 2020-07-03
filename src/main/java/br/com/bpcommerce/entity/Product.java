@@ -1,22 +1,24 @@
 package br.com.bpcommerce.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
-
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the product database table.
  * 
  */
 @Entity
-@Table(name="product")
-@NamedQuery(name="Product.findAll", query="SELECT p FROM Product p")
+@Table(name = "product")
+@NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -37,20 +39,18 @@ public class Product implements Serializable {
 
 	private String statusprod;
 
-	//bi-directional many-to-one association to Orderitem
-	@OneToMany(mappedBy="product")
+	// bi-directional many-to-one association to Orderitem
+	@OneToMany(mappedBy = "product")
 	private List<Orderitem> orderitems;
 
-	//bi-directional many-to-one association to Category
+	// bi-directional many-to-one association to Category
 	@ManyToOne
-	@JsonProperty(value = "category")
-	@JoinColumn(name="category")
+	@JoinColumn(name = "category")
 	private Category categoryBean;
 
-	//bi-directional many-to-one association to Brand
+	// bi-directional many-to-one association to Brand
 	@ManyToOne
-	@JsonProperty(value = "brand")
-	@JoinColumn(name="brand")
+	@JoinColumn(name = "brand")
 	private Brand brandBean;
 
 	public Product() {
