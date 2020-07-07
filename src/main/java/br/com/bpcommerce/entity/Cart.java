@@ -1,51 +1,50 @@
 package br.com.bpcommerce.entity;
 
+import java.util.ArrayList;
+
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "bprevcart")
 public class Cart {
 
-	private String id;
+	@Id
+	private ObjectId _id;
 	private String iduser;
-	private String prodId;
-	private String prodPrice;
-	private String prodBrand;
-	private String prodPic;
+	private ArrayList<ProductCart> prodInfo;
 	
+	public Cart() {}
 	
-	public String getId() {
-		return id;
+	public Cart(ObjectId _id,String iduser, ArrayList<ProductCart> prodInfo) {
+		
+		this._id = _id;
+		this.iduser = iduser;
+		this.prodInfo = prodInfo;
 	}
-	public void setId(String id) {
-		this.id = id;
+	
+	public ObjectId get_id() {
+		return _id;
 	}
+
+	public void set_id(ObjectId _id) {
+		this._id = _id;
+	}
+
 	public String getIduser() {
 		return iduser;
 	}
+
 	public void setIduser(String iduser) {
 		this.iduser = iduser;
 	}
-	public String getProdId() {
-		return prodId;
+
+	public ArrayList<ProductCart> getProdInfo() {
+		return prodInfo;
 	}
-	public void setProdId(String prodId) {
-		this.prodId = prodId;
+
+	public void setProdInfo(ArrayList<ProductCart> prodInfo) {
+		this.prodInfo = prodInfo;
 	}
-	public String getProdPrice() {
-		return prodPrice;
-	}
-	public void setProdPrice(String prodPrice) {
-		this.prodPrice = prodPrice;
-	}
-	public String getProdBrand() {
-		return prodBrand;
-	}
-	public void setProdBrand(String prodBrand) {
-		this.prodBrand = prodBrand;
-	}
-	public String getProdPic() {
-		return prodPic;
-	}
-	public void setProdPic(String prodPic) {
-		this.prodPic = prodPic;
-	}
-	
 	
 }
