@@ -132,36 +132,5 @@ public class CartController {
 		return prodCart;
 	}
 
-	@GetMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String getCart(@PathVariable(name = "id") String id) {
-
-		User allUser = new User();
-
-		return allUser.toString();
-	}
-
-	@PutMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String updatetCart(@PathVariable(name = "id") String id) {
-
-		User allUser = new User();
-
-		return allUser.toString();
-	}
-
-	@PostMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String chckoutCart(@PathVariable(name = "id") String id) {
-
-		User allUser = new User();
-
-		return allUser.toString();
-	}
-
-	@DeleteMapping(value = "/" + PATH + "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	private String deleteOrder(@PathVariable(name = "id") String id) {
-
-		User allUser = new User();
-
-		return allUser.toString();
-	}
 
 }
