@@ -24,11 +24,11 @@ public class ProductCart implements Serializable {
 	
 	private String category;
 
-	private BigDecimal price;
+	private Double price;
 
 	private String brand;
 	
-	private String quantity;
+	private Integer quantity;
 
 	public ProductCart() {
 	}
@@ -40,12 +40,12 @@ public class ProductCart implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getQuantity() {
+
+	public Integer getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 
@@ -65,11 +65,11 @@ public class ProductCart implements Serializable {
 		this.pic1 = pic1;
 	}
 
-	public BigDecimal getPrice() {
+	public Double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

@@ -45,15 +45,10 @@ public class CartController {
 
 	List<Product> productsCart;
 
-//	@GetMapping(value = "/"+PATH+"/all", produces = MediaType.APPLICATION_JSON_VALUE)
-//	private String allOrders() {
-//		
-//		User allUser = new User();
-//		
-//		
-//		return allUser.toString();		
-//	}
+	Double totalPrice = 0.0;
+	int itemProdId = 0;
 
+	@SuppressWarnings("null")
 	@PutMapping(value = "/" + PATH + "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Optional<Cart> insert(@RequestBody String cartData) {
 
@@ -62,13 +57,13 @@ public class CartController {
 		Cart addCart = new Cart();
 
 		if (cartJson.getString("idCart").equals("0")) {
-			
+
 			addCart.set_id(ObjectId.get());
 
 			// Find product to add mongodb cart
 			Product product = prodRepo.findById(Integer.valueOf(cartJson.getInt("prodId")));
 
-			ArrayList<ProductCart> prodList = setProduct(product);
+			ArrayList<ProductCart> prodList = setProduct(product, cartJson.getInt("quantity"));
 
 			addCart.setProdInfo(prodList);
 
@@ -76,27 +71,39 @@ public class CartController {
 			System.out.println("NEW CART CREATED:::: " + newCart);
 
 			Optional<Cart> cartObj = cartRepo.findById(newCart.get_id().toString());
-			
+
 			return cartObj;
 
 		} else {
 
 			Product product = prodRepo.findById(Integer.valueOf(cartJson.getInt("prodId")));
 
-			ArrayList<ProductCart> prodList = setProduct(product);
+			ArrayList<ProductCart> prodList = setProduct(product, cartJson.getInt("quantity"));
 
 			Optional<Cart> getCart = cartRepo.findById(cartJson.getString("idCart"));
 
 			getCart.ifPresent(Cart -> {
 				Cart.getProdInfo().iterator().forEachRemaining(element -> {
-					prodList.add(element);
+
+					ProductCart item = element;
+
+					if (element.getId() != Integer.valueOf(cartJson.getInt("prodId"))) {
+						item.setQuantity(item.getQuantity() + 1);
+						prodList.add(element);
+					}
 				});
 			});
+
+			// Sum total cart items
+			for (ProductCart prod : prodList) {
+				totalPrice += Double.valueOf(prod.getPrice());
+			}
 
 			Query query = new Query();
 			query.addCriteria(Criteria.where("_id").is(cartJson.getString("idCart")));
 			Update update = new Update();
 			update.set("prodInfo", prodList);
+			update.set("totalCart", totalPrice);
 			mongoTemplate.findAndModify(query, update, Cart.class);
 
 			Optional<Cart> cartObj = cartRepo.findById(cartJson.getString("idCart"));
@@ -107,8 +114,8 @@ public class CartController {
 
 	}
 
-	//Transfer Product to Product for cart
-	private ArrayList<ProductCart> setProduct(Product product) {
+	// Transfer Product to Product for cart
+	private ArrayList<ProductCart> setProduct(Product product, Integer quantity) {
 
 		ArrayList<ProductCart> prodCart = new ArrayList<>();
 		ProductCart productCart = new ProductCart();
@@ -118,6 +125,7 @@ public class CartController {
 		productCart.setPrice(product.getPrice());
 		productCart.setCategory(product.getCategory().getName());
 		productCart.setBrand(product.getBrand().getName());
+		productCart.setQuantity(quantity);
 
 		prodCart.add(productCart);
 

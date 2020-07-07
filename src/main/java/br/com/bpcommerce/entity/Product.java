@@ -35,7 +35,7 @@ public class Product implements Serializable {
 
 	private String pic4;
 
-	private BigDecimal price;
+	private Double price;
 
 	private String statusprod;
 
@@ -104,11 +104,11 @@ public class Product implements Serializable {
 		this.pic4 = pic4;
 	}
 
-	public BigDecimal getPrice() {
+	public Double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 

@@ -13,14 +13,16 @@ public class Cart {
 	private ObjectId _id;
 	private String iduser;
 	private ArrayList<ProductCart> prodInfo;
+	private Double totalCart;
 	
 	public Cart() {}
 	
-	public Cart(ObjectId _id,String iduser, ArrayList<ProductCart> prodInfo) {
+	public Cart(ObjectId _id,String iduser, ArrayList<ProductCart> prodInfo, Double totalCart) {
 		
 		this._id = _id;
 		this.iduser = iduser;
 		this.prodInfo = prodInfo;
+		this.totalCart = totalCart;
 	}
 	
 	public ObjectId get_id() {
@@ -45,6 +47,14 @@ public class Cart {
 
 	public void setProdInfo(ArrayList<ProductCart> prodInfo) {
 		this.prodInfo = prodInfo;
+	}
+
+	public Double getTotalCart() {
+		return totalCart;
+	}
+
+	public void setTotalCart(Double totalCart) {
+		this.totalCart = totalCart;
 	}
 	
 }
