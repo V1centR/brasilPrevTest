@@ -13,9 +13,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.bpcommerce.entity.Cart;
 import br.com.bpcommerce.entity.Product;
 import br.com.bpcommerce.entity.ProductCart;
-import br.com.bpcommerce.model.User;
 import br.com.bpcommerce.repo.CartMongoRepo;
 import br.com.bpcommerce.repo.ProductRepo;
 
@@ -47,8 +44,8 @@ public class CartController {
 
 	Double totalPrice = 0.0;
 	int itemProdId = 0;
+	//private ProductCart item;
 
-	@SuppressWarnings("null")
 	@PutMapping(value = "/" + PATH + "/add", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Optional<Cart> insert(@RequestBody String cartData) {
 
@@ -80,19 +77,24 @@ public class CartController {
 
 			ArrayList<ProductCart> prodList = setProduct(product, cartJson.getInt("quantity"));
 
-			Optional<Cart> getCart = cartRepo.findById(cartJson.getString("idCart"));
+			Cart getCart = cartRepo.findById(cartJson.getString("idCart")).orElse(null);
 
-			getCart.ifPresent(Cart -> {
-				Cart.getProdInfo().iterator().forEachRemaining(element -> {
+			for (int i = 0; i < getCart.getProdInfo().size(); i++) {
 
-					ProductCart item = element;
+				if (getCart.getProdInfo().get(i).getId() == Integer.valueOf(cartJson.getInt("prodId"))) {
 
-					if (element.getId() != Integer.valueOf(cartJson.getInt("prodId"))) {
-						item.setQuantity(item.getQuantity() + 1);
-						prodList.add(element);
-					}
-				});
-			});
+					getCart.getProdInfo().get(i)
+							.setQuantity(getCart.getProdInfo().get(i).getQuantity() + cartJson.getInt("quantity"));
+
+					prodList.set(0, getCart.getProdInfo().get(i));
+
+				} else {
+
+					//ProductCart item = 
+					prodList.add(getCart.getProdInfo().get(i));
+				}
+
+			}
 
 			// Sum total cart items
 			for (ProductCart prod : prodList) {
@@ -132,5 +134,12 @@ public class CartController {
 		return prodCart;
 	}
 
+	@DeleteMapping(value = "/" + PATH + "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	private String removeProductCart(@PathVariable(name = "id") String id) {
+
+		// Optional<Cart> cartObj = cartRepo.findById(cartJson.getString("idCart"));
+
+		return null;
+	}
 
 }
