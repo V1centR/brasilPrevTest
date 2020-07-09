@@ -116,24 +116,6 @@ public class CartController {
 
 	}
 
-	// Transfer Product to Product for cart
-	private ArrayList<ProductCart> setProduct(Product product, Integer quantity) {
-
-		ArrayList<ProductCart> prodCart = new ArrayList<>();
-		ProductCart productCart = new ProductCart();
-
-		productCart.setId(product.getId());
-		productCart.setName(product.getName());
-		productCart.setPrice(product.getPrice());
-		productCart.setCategory(product.getCategory().getName());
-		productCart.setBrand(product.getBrand().getName());
-		productCart.setQuantity(quantity);
-
-		prodCart.add(productCart);
-
-		return prodCart;
-	}
-
 	@DeleteMapping(value = "/" + PATH + "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	private String removeProductCart(@PathVariable(name = "id") String id) {
 
@@ -141,5 +123,23 @@ public class CartController {
 
 		return null;
 	}
+	
+	// Transfer Product to Product for cart
+		private ArrayList<ProductCart> setProduct(Product product, Integer quantity) {
+
+			ArrayList<ProductCart> prodCart = new ArrayList<>();
+			ProductCart productCart = new ProductCart();
+
+			productCart.setId(product.getId());
+			productCart.setName(product.getName());
+			productCart.setPrice(product.getPrice());
+			productCart.setCategory(product.getCategory().getName());
+			productCart.setBrand(product.getBrand().getName());
+			productCart.setQuantity(quantity);
+
+			prodCart.add(productCart);
+
+			return prodCart;
+		}
 
 }
